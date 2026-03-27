@@ -2,6 +2,60 @@
   // ⚙️ CAMBIÁ ESTE NÚMERO por el tuyo (formato: código país + número, sin + ni espacios)
   const WP_NUMBER = "5491126621868";
 
+  // Sistema de carrito
+  let cart = [];
+
+  function updateCart() {
+    const checkboxes = document.querySelectorAll('.card-checkbox:checked');
+    cart = Array.from(checkboxes).map(cb => cb.dataset.name);
+    
+    const cartCount = document.getElementById('cartCount');
+    cartCount.textContent = cart.length;
+    cartCount.style.display = cart.length > 0 ? 'flex' : 'none';
+    
+    updateCartPanel();
+  }
+
+  function updateCartPanel() {
+    const cartItems = document.getElementById('cartItems');
+    if (cart.length === 0) {
+      cartItems.innerHTML = '<p class="empty-cart">No hay prendas seleccionadas</p>';
+    } else {
+      cartItems.innerHTML = cart.map((item, idx) => 
+        `<div class="cart-item">
+          <span>${item}</span>
+          <button onclick="removeFromCart(${idx})" class="remove-item">×</button>
+        </div>`
+      ).join('');
+    }
+  }
+
+  function removeFromCart(index) {
+    const checkboxes = document.querySelectorAll('.card-checkbox');
+    checkboxes.forEach(cb => {
+      if (cb.dataset.name === cart[index]) {
+        cb.checked = false;
+      }
+    });
+    updateCart();
+  }
+
+  function toggleCart() {
+    const cartPanel = document.getElementById('cartPanel');
+    cartPanel.style.display = cartPanel.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function consultarCarrito() {
+    if (cart.length === 0) {
+      alert('Selecciona al menos una prenda');
+      return;
+    }
+    
+    const prendas = cart.join(', ');
+    const msg = encodeURIComponent(`Hola! Quiero consultar disponibilidad de estas prendas: ${prendas}`);
+    window.open(`https://wa.me/${WP_NUMBER}?text=${msg}`, '_blank');
+  }
+
   function openModal(name, cat, desc, imgUrl, emoji) {
     document.getElementById('modalCat').textContent = cat;
     document.getElementById('modalTitle').textContent = name;
