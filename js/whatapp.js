@@ -1,13 +1,17 @@
 
   // ⚙️ CAMBIÁ ESTE NÚMERO por el tuyo (formato: código país + número, sin + ni espacios)
   const WP_NUMBER = "5491126621868";
+  const SITE_URL = "https://indumentaria-nhl.vercel.app";
 
-  // Sistema de carrito
+  // Sistema de carrito con imágenes
   let cart = [];
 
   function updateCart() {
     const checkboxes = document.querySelectorAll('.card-checkbox:checked');
-    cart = Array.from(checkboxes).map(cb => cb.dataset.name);
+    cart = Array.from(checkboxes).map(cb => ({
+      name: cb.dataset.name,
+      img: cb.dataset.img || ''
+    }));
     
     const cartCount = document.getElementById('cartCount');
     cartCount.textContent = cart.length;
@@ -23,7 +27,7 @@
     } else {
       cartItems.innerHTML = cart.map((item, idx) => 
         `<div class="cart-item">
-          <span>${item}</span>
+          <span>${item.name}</span>
           <button onclick="removeFromCart(${idx})" class="remove-item">×</button>
         </div>`
       ).join('');
@@ -33,7 +37,7 @@
   function removeFromCart(index) {
     const checkboxes = document.querySelectorAll('.card-checkbox');
     checkboxes.forEach(cb => {
-      if (cb.dataset.name === cart[index]) {
+      if (cb.dataset.name === cart[index].name) {
         cb.checked = false;
       }
     });
@@ -51,8 +55,14 @@
       return;
     }
     
-    const prendas = cart.join(', ');
-    const msg = encodeURIComponent(`Hola! Quiero consultar disponibilidad de estas prendas: ${prendas}`);
+    const prendas = cart.map(item => {
+      if (item.img) {
+        return `${item.name}\n${SITE_URL}/${item.img}`;
+      }
+      return item.name;
+    }).join('\n\n');
+    
+    const msg = encodeURIComponent(`Hola! Quiero consultar disponibilidad de estas prendas:\n\n${prendas}`);
     window.open(`https://wa.me/${WP_NUMBER}?text=${msg}`, '_blank');
   }
 
@@ -68,7 +78,8 @@
       imgContainer.innerHTML = `<div class="placeholder-img"><span class="icon">${emoji}</span></div>`;
     }
 
-    const msg = encodeURIComponent(`Hola! Vi la prenda "${name}" en la web y quería consultar si está disponible. ¿Me podés dar más info?`);
+    const imageLink = imgUrl ? `\n\n${SITE_URL}/${imgUrl}` : '';
+    const msg = encodeURIComponent(`Hola! Vi la prenda "${name}" en la web y quería consultar si está disponible. ¿Me podés dar más info?${imageLink}`);
     document.getElementById('wspLink').href = `https://wa.me/${WP_NUMBER}?text=${msg}`;
 
     document.getElementById('modal').classList.add('open');
