@@ -29,6 +29,8 @@
   <a href="#pantalones" onclick="closeMenu()">Pantalones</a>
 </div>
 
+<div class="scrim" id="scrim" onclick="closeMenu()" aria-hidden="true"></div>
+
 <nav class="bottom-nav" id="bottomNav">
   <a href="#remeras" id="bn-remeras">
     <svg viewBox="0 0 24 24"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.86H6v10c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V10h2.15a1 1 0 00.99-.86l.58-3.57a2 2 0 00-1.34-2.23z"/></svg>
@@ -48,10 +50,39 @@
   </a>
 </nav>
 
-<div class="hero">
-  <h1>Nueva<br>Colección</h1>
-  <p>Seleccioná la prenda que te gusta y consultanos por disponibilidad vía WhatsApp.</p>
-</div>
+<header class="hero" id="inicio">
+  <div class="hero-inner">
+    <p class="hero-kicker">Indumentaria NHL</p>
+    <h1>Nueva<br>Colección</h1>
+    <p>Seleccioná la prenda que te gusta y consultanos por disponibilidad vía WhatsApp.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#remeras">Ver remeras</a>
+      <button class="btn btn-ghost" type="button" onclick="scrollToHowToBuy()">Cómo comprar</button>
+    </div>
+  </div>
+</header>
+
+<section class="section howto" id="como-comprar" aria-label="Cómo comprar">
+  <div class="section-header">
+    <h2 class="section-title">Cómo comprar</h2>
+    <div class="section-line"></div>
+    <span class="section-count">03 pasos</span>
+  </div>
+  <div class="howto-grid">
+    <div class="howto-item">
+      <div class="howto-title">1) Elegí</div>
+      <p class="howto-text">Marcá prendas con el checkbox o abrí “Ver prenda” para ver detalle.</p>
+    </div>
+    <div class="howto-item">
+      <div class="howto-title">2) Revisá</div>
+      <p class="howto-text">Abrí el carrito flotante para ver lo seleccionado.</p>
+    </div>
+    <div class="howto-item">
+      <div class="howto-title">3) Consultá</div>
+      <p class="howto-text">Tocá “Consultar por WhatsApp” y te respondemos disponibilidad.</p>
+    </div>
+  </div>
+</section>
 
 <!-- ========== REMERAS OVERSIZE ========== -->
 <section class="section" id="remeras">
@@ -63,48 +94,48 @@
   <div class="grid">
     <div class="card">
       <input type="checkbox" class="card-checkbox" data-name="Remera Venezia Oversize" data-img="img/venezia-rem.jpg" onchange="updateCart()">
-      <div onclick="openModal('Remera Venezia Ovesize','Remeras','Corte recto, tela de algodón 100% peinado. Disponible en talle S, M, L, XL.','img/venezia-rem.jpg','👕')">
-        <img src="img/venezia-rem.jpg" alt="Remera negra" style="width:100%;aspect-ratio:3/4;object-fit:cover;">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Remera Venezia Oversize','Remeras','Corte recto, tela de algodón 100% peinado. Disponible en talle S, M, L, XL.','img/venezia-rem.jpg','👕')">
+        <img class="card-media" src="img/venezia-rem.jpg" alt="Remera Venezia Oversize">
         <div class="card-body">
           <div class="card-name">Remera Venezia Oversize</div>
           <div class="card-detail">Algodón peinado 24/1 100% · CONSULTAR TALLES ·</div>
         </div>
-        <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+        <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
       </div>
     </div>
 
     <div class="card">
       <input type="checkbox" class="card-checkbox" data-name="Remera Caballos Oversize" data-img="img/caballos-rem.jpeg" onchange="updateCart()">
-      <div onclick="openModal('Remera Oversize Beige','Remeras','Corte oversize, cuello redondo. Tela gruesa de alta calidad. Ideal para el día a día.','img/caballos-rem.jpeg','👕')">
-        <img src="img/caballos-rem.jpeg" alt="Remera Beige" style="width:100%;aspect-ratio:3/4;object-fit:cover;">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Remera Oversize Beige','Remeras','Corte oversize, cuello redondo. Tela gruesa de alta calidad. Ideal para el día a día.','img/caballos-rem.jpeg','👕')">
+        <img class="card-media" src="img/caballos-rem.jpeg" alt="Remera Caballos Oversize">
         <div class="card-body">
           <div class="card-name">Remera Caballos Oversize</div>
           <div class="card-detail">Oversize · CONSULTAR TALLES ·</div>
         </div>
-        <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+        <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
       </div>
     </div>
 
     <div class="card">
       <input type="checkbox" class="card-checkbox" data-name="Remera Rayas Marinera" data-img="img/caballos2-rem.jpeg" onchange="updateCart()">
-      <div onclick="openModal('Remera Oversize Caballos','Remeras','Diseño minimalista.','img/caballos2-rem.jpeg','👕')">
-        <img src="img/caballos2-rem.jpeg" alt="Remera Beige" style="width:100%;aspect-ratio:3/4;object-fit:cover;">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Remera Oversize Caballos','Remeras','Diseño minimalista.','img/caballos2-rem.jpeg','👕')">
+        <img class="card-media" src="img/caballos2-rem.jpeg" alt="Remera Rayas Marinera">
         <div class="card-body">
           <div class="card-name">Remera Rayas Marinera</div>
           <div class="card-detail">Slim · CONSULTAR TALLES ·</div>
         </div>
-        <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+        <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
       </div>
     </div>
-    <div class="card">
+    <div class="card card--disabled" aria-disabled="true">
       <input type="checkbox" class="card-checkbox" data-name="No disponible" onchange="updateCart()" disabled>
-      <div onclick="openModal('Remera Estampada Retro','Remeras','Estampa retro exclusiva de colección. Tela de algodón orgánico. Edición limitada.','img/calvin-klein-rem.jpeg','👕')">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Remera Estampada Retro','Remeras','Estampa retro exclusiva de colección. Tela de algodón orgánico. Edición limitada.','img/calvin-klein-rem.jpeg','👕')">
         <div class="placeholder-img"><span class="icon">👕</span><span>Remera</span></div>
         <div class="card-body">
           <div class="card-name">No disponible</div>
           <div class="card-detail"></div>
         </div>
-        <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+        <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
       </div>
     </div>
   </div>
@@ -113,53 +144,53 @@
 <!-- ========== REMERAS CORTE CLÁSICO ========== -->
 <section class="section" id="remeras-clasico">
   <div class="section-header">
-    <h2 class="section-title">· Remeras Corte Clásico ·</h2>
+    <h2 class="section-title">Remeras Corte Clásico</h2>
     <div class="section-line"></div>
     <span class="section-count">04 prendas</span>
   </div>
   <div class="grid">
     <div class="card">
       <input type="checkbox" class="card-checkbox" data-name="Remera Clásica Gris" data-img="img/unlimited-rem.jpeg" onchange="updateCart()">
-      <div onclick="openModal('Remera Clásica Gris','Remeras Clásico','Corte ajustado clásico, tela de algodón 100% peinado. Perfecta para combinar con cualquier outfit.','img/unlimited-rem.jpeg','👕')">
-        <img src="img/unlimited-rem.jpeg" alt="Remera Gris Oscuro" style="width:100%;aspect-ratio:3/4;object-fit:cover;">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Remera Clásica Gris','Remeras Clásico','Corte ajustado clásico, tela de algodón 100% peinado. Perfecta para combinar con cualquier outfit.','img/unlimited-rem.jpeg','👕')">
+        <img class="card-media" src="img/unlimited-rem.jpeg" alt="Remera Clásica Gris">
         <div class="card-body">
-        <div class="card-name">· Remera Clásica Gris ·</div>
+        <div class="card-name">Remera Clásica Gris</div>
         <div class="card-detail">Algodón 100% · CONSULTAR TALLES ·</div>
       </div>
-      <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+      <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
     </div>
     </div>
     <div class="card">
       <input type="checkbox" class="card-checkbox" data-name="Remera Clásica Marron" data-img="img/marron-rem.jpeg" onchange="updateCart()">
-      <div onclick="openModal('Remera Clásica Marron','Remeras Clásico','Corte ajustado, cuello redondo. Tela premium de algodón. Ideal para looks minimalistas.','img/marron-rem.jpeg','👕')">
-      <img src="img/marron-rem.jpeg" alt="Remera Marron" style="width:100%;aspect-ratio:3/4;object-fit:cover;">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Remera Clásica Marron','Remeras Clásico','Corte ajustado, cuello redondo. Tela premium de algodón. Ideal para looks minimalistas.','img/marron-rem.jpeg','👕')">
+      <img class="card-media" src="img/marron-rem.jpeg" alt="Remera Clásica Marrón">
       <div class="card-body">
-        <div class="card-name">· Remera Clásica Marron ·</div>
+        <div class="card-name">Remera Clásica Marron</div>
         <div class="card-detail">Algodón 100% · CONSULTAR TALLES ·</div>
       </div>
-      <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+      <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
     </div>
     </div>
     <div class="card">
       <input type="checkbox" class="card-checkbox" data-name="Remera Clásica Hugo" data-img="img/hugo.rem.jpeg" onchange="updateCart()">
-      <div onclick="openModal('Remera Hugo ','Remeras Clásico','Corte clásico. Tejido suave y cómodo. Versátil para cualquier ocasión.','img/hugo.rem.jpeg','👕')">
-      <img src="img/hugo.rem.jpeg" alt="Remera Hugo" style="width:100%;aspect-ratio:3/4;object-fit:cover;">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Remera Hugo ','Remeras Clásico','Corte clásico. Tejido suave y cómodo. Versátil para cualquier ocasión.','img/hugo.rem.jpeg','👕')">
+      <img class="card-media" src="img/hugo.rem.jpeg" alt="Remera Clásica Hugo">
       <div class="card-body">
-        <div class="card-name">· Remera Clásica Hugo · </div>
+        <div class="card-name">Remera Clásica Hugo</div>
         <div class="card-detail">Algodón 100% · CONSULTAR TALLES ·</div>
       </div>
-      <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+      <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
     </div>
     </div>
     <div class="card">
       <input type="checkbox" class="card-checkbox" data-name="Remera Clásica Marfil" data-img="img/lacoste-rem.jpeg" onchange="updateCart()">
-      <div onclick="openModal('Remera Clásica Marfil','Remeras Clásico','Tono marfil elegante. Corte clásico impecable. Tela de alta calidad y durabilidad.','img/lacoste-rem.jpeg','👕')">
-      <img src="img/lacoste-rem.jpeg" alt="Remera" style="width:100%;aspect-ratio:3/4;object-fit:cover;">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Remera Clásica Marfil','Remeras Clásico','Tono marfil elegante. Corte clásico impecable. Tela de alta calidad y durabilidad.','img/lacoste-rem.jpeg','👕')">
+      <img class="card-media" src="img/lacoste-rem.jpeg" alt="Remera Lacoste">
       <div class="card-body">
-        <div class="card-name">· Remera Lacoste · </div>
+        <div class="card-name">Remera Lacoste</div>
         <div class="card-detail">Algodón 100% · CONSULTAR TALLES ·</div>
       </div>
-      <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+      <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
     </div>
   </div>
 </section>
@@ -174,24 +205,24 @@
   <div class="grid">
     <div class="card">
       <input type="checkbox" class="card-checkbox" data-name="Buzo Jordan Canguro" data-img="img/buzo-jordan.jpeg" onchange="updateCart()">
-      <div onclick="openModal('Buzo Canguro Gris','Buzos','Canguro con bolsillo frontal. Tela de algodón y poliéster. Ideal para el frío sin perder el estilo.','img/buzo-jordan.jpeg','🧥')">
-      <img src="img/buzo-jordan.jpeg" alt="Remera" style="width:100%;aspect-ratio:3/4;object-fit:cover;">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Buzo Canguro Gris','Buzos','Canguro con bolsillo frontal. Tela de algodón y poliéster. Ideal para el frío sin perder el estilo.','img/buzo-jordan.jpeg','🧥')">
+      <img class="card-media" src="img/buzo-jordan.jpeg" alt="Buzo Jordan Canguro">
       <div class="card-body">
         <div class="card-name">Buzo Jordan Canguro</div>
         <div class="card-detail">· CONSULTAR TALLES ·</div>
       </div>
-      <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+      <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
     </div>
     </div>
     <div class="card">
       <input type="checkbox" class="card-checkbox" data-name="Buzo Caguro" data-img="img/buzo-adventure.jpeg" onchange="updateCart()">
-      <div onclick="openModal('Buzo Crewneck Negro','Buzos','Cuello redondo clásico. Felpa interna suave. Bordado minimalista en pecho.','img/buzo-adventure.jpeg','🧥')">
-      <img src="img/buzo-adventure.jpeg" alt="Remera" style="width:100%;aspect-ratio:3/4;object-fit:cover;">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Buzo Crewneck Negro','Buzos','Cuello redondo clásico. Felpa interna suave. Bordado minimalista en pecho.','img/buzo-adventure.jpeg','🧥')">
+      <img class="card-media" src="img/buzo-adventure.jpeg" alt="Buzo Canguro">
       <div class="card-body">
         <div class="card-name">Buzo Caguro</div>
         <div class="card-detail">· CONSULTAR TALLES ·</div>
       </div>
-      <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+      <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
     </div>
     </div>
   </div>
@@ -207,46 +238,46 @@
   <div class="grid">
     <div class="card">
       <input type="checkbox" class="card-checkbox" data-name="Pantalón Adidas" data-img="img/pantalon-adidas-friza.jpeg" onchange="updateCart()">
-      <div onclick="openModal('Pantalón Ancho Adidas','Pantalones','Pantalon con friza excelente calidad. Tela resistente de algodón.','img/pantalon-adidas-friza.jpeg','👖')">
-      <img src="img/pantalon-adidas-friza.jpeg" alt="Pantalon Adidas" style="width:100%;aspect-ratio:3/4;object-fit:cover;">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Pantalón Ancho Adidas','Pantalones','Pantalon con friza excelente calidad. Tela resistente de algodón.','img/pantalon-adidas-friza.jpeg','👖')">
+      <img class="card-media" src="img/pantalon-adidas-friza.jpeg" alt="Pantalón Adidas">
       <div class="card-body">
         <div class="card-name">Pantalón Adidas</div>
         <div class="card-detail">· CONSULTAR TALLES ·</div>
       </div>
-      <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+      <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
     </div>
     </div>
-    <div class="card">
+    <div class="card card--disabled" aria-disabled="true">
       <input type="checkbox" class="card-checkbox" data-name="No disponible" onchange="updateCart()" disabled>
-      <div onclick="openModal('Jean Slim Azul','Pantalones','Jean slim clásico. Denim de calidad con elastano. Corte recto y cómodo para todo el día.','','👖')">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Jean Slim Azul','Pantalones','Jean slim clásico. Denim de calidad con elastano. Corte recto y cómodo para todo el día.','','👖')">
       <div class="placeholder-img"><span class="icon">👖</span><span>Pantalón</span></div>
       <div class="card-body">
         <div class="card-name">No disponible</div>
         <div class="card-detail"></div>
       </div>
-      <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+      <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
     </div>
     </div>
-    <div class="card">
+    <div class="card card--disabled" aria-disabled="true">
       <input type="checkbox" class="card-checkbox" data-name="No disponible" onchange="updateCart()" disabled>
-      <div onclick="openModal('Pantalón Recto Negro','Pantalones','Corte recto elegante. Ideal para combinar con remeras o buzos. Tela fluida de alta calidad.','','👖')">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Pantalón Recto Negro','Pantalones','Corte recto elegante. Ideal para combinar con remeras o buzos. Tela fluida de alta calidad.','','👖')">
       <div class="placeholder-img"><span class="icon">👖</span><span>Pantalón</span></div>
       <div class="card-body">
         <div class="card-name">No disponible</div>
         <div class="card-detail"></div>
       </div>
-      <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+      <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
     </div>
     </div>
-    <div class="card">
+    <div class="card card--disabled" aria-disabled="true">
       <input type="checkbox" class="card-checkbox" data-name="No disponible" onchange="updateCart()" disabled>
-      <div onclick="openModal('Jogger Gris Oscuro','Pantalones','Jogger con puño en tobillo. Tela de frisa suave. Comodidad máxima con elástico en cintura.','','👖')">
+      <div class="card-hit" role="button" tabindex="0" onkeydown="handleCardKey(event)" onclick="openModal('Jogger Gris Oscuro','Pantalones','Jogger con puño en tobillo. Tela de frisa suave. Comodidad máxima con elástico en cintura.','','👖')">
       <div class="placeholder-img"><span class="icon">👖</span><span>Pantalón</span></div>
       <div class="card-body">
         <div class="card-name">No disponible</div>
         <div class="card-detail"></div>
       </div>
-      <div class="card-overlay"><button class="card-overlay-btn">Ver prenda</button></div>
+      <div class="card-overlay"><button class="card-overlay-btn" type="button">Ver prenda</button></div>
     </div>
   </div>
 </section>

@@ -46,7 +46,14 @@
 
   function toggleCart() {
     const cartPanel = document.getElementById('cartPanel');
-    cartPanel.style.display = cartPanel.style.display === 'none' ? 'block' : 'none';
+    if (!cartPanel) return;
+    const isOpen = cartPanel.style.display !== 'none';
+    cartPanel.style.display = isOpen ? 'none' : 'block';
+  }
+
+  function closeCart() {
+    const cartPanel = document.getElementById('cartPanel');
+    if (cartPanel) cartPanel.style.display = 'none';
   }
 
   function consultarCarrito() {
@@ -67,6 +74,8 @@
   }
 
   function openModal(name, cat, desc, imgUrl, emoji) {
+    closeCart();
+    closeMenu();
     document.getElementById('modalCat').textContent = cat;
     document.getElementById('modalTitle').textContent = name;
     document.getElementById('modalDesc').textContent = desc;
@@ -99,18 +108,43 @@
     if (e.key === 'Escape') closeModal();
   });
 
+  document.addEventListener('click', (e) => {
+    const cartPanel = document.getElementById('cartPanel');
+    const cartBtn = document.querySelector('.cart-btn');
+    if (!cartPanel || cartPanel.style.display === 'none') return;
+    const clickedInside = cartPanel.contains(e.target) || (cartBtn && cartBtn.contains(e.target));
+    if (!clickedInside) closeCart();
+  });
+
   // Hamburger
   function toggleMenu() {
     const h = document.getElementById('hamburger');
     const m = document.getElementById('mobileMenu');
+    const s = document.getElementById('scrim');
     h.classList.toggle('open');
     m.classList.toggle('open');
+    if (s) s.classList.toggle('open');
     document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
   }
   function closeMenu() {
     document.getElementById('hamburger').classList.remove('open');
     document.getElementById('mobileMenu').classList.remove('open');
+    const s = document.getElementById('scrim');
+    if (s) s.classList.remove('open');
     document.body.style.overflow = '';
+  }
+
+  function handleCardKey(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      e.currentTarget.click();
+    }
+  }
+
+  function scrollToHowToBuy() {
+    closeMenu();
+    const el = document.getElementById('como-comprar');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // Nav + bottom nav active on scroll
