@@ -17,19 +17,30 @@ let currentViewId = null;
 
 // Initialize Firebase
 function initFirebase() {
-  firebase.initializeApp(firebaseConfig);
-  auth = firebase.auth();
-  db = firebase.firestore();
-  storage = firebase.storage();
+  try {
+    firebase.initializeApp(firebaseConfig);
+    auth = firebase.auth();
+    db = firebase.firestore();
+    storage = firebase.storage();
+    console.log('Firebase initialized successfully');
+  } catch (error) {
+    console.error('Firebase initialization error:', error);
+  }
 }
 
 // Auth State
 function onAuthStateChange(user) {
+  console.log('Auth state changed:', user);
   currentUser = user;
   if (user && user.email === 'nahuel.lavena@gmail.com') {
+    console.log('User authenticated, showing dashboard');
     showDashboard();
     loadProducts();
   } else {
+    console.log('No user or different email, showing login');
+    if (user) {
+      console.log('User email:', user.email);
+    }
     showLogin();
   }
 }
@@ -54,14 +65,20 @@ document.addEventListener('DOMContentLoaded', () => {
         currentUser = userCredential.user;
       } catch (error) {
         console.error('Login error:', error);
+        console.error('Error code:', error.code);
+        console.error('Error message:', error.message);
         if (error.code === 'auth/invalid-email' || error.code === 'auth/user-not-found') {
           errorEl.textContent = 'Email no válido';
         } else if (error.code === 'auth/wrong-password') {
           errorEl.textContent = 'Contraseña incorrecta';
         } else if (error.code === 'auth/invalid-credential') {
           errorEl.textContent = 'Credenciales incorrectas';
+        } else if (error.code === 'auth/user-disabled') {
+          errorEl.textContent = 'Usuario deshabilitado';
+        } else if (error.code === 'auth/network-request-failed') {
+          errorEl.textContent = 'Error de red. Verificá tu conexión.';
         } else {
-          errorEl.textContent = 'Error al iniciar sesión';
+          errorEl.textContent = 'Error: ' + error.message;
         }
       }
     });
