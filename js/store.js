@@ -1,8 +1,8 @@
 const storeConfig = {
   apiKey: "AIzaSyAdf2ae0d3a778c97b3002d",
-  authDomain: "panel-turnos.firebaseapp.com",
-  projectId: "panel-turnos",
-  storageBucket: "panel-turnos.firebasestorage.app",
+  authDomain: "indumentaria-nhl.firebaseapp.com",
+  projectId: "indumentaria-nhl",
+  storageBucket: "indumentaria-nhl.firebasestorage.app",
   messagingSenderId: "592642048600",
   appId: "1:592642048600:web:adf2ae0d3a778c97b3002d"
 };
