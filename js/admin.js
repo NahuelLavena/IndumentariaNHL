@@ -1,9 +1,9 @@
 // Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyAdf2ae0d3a778c97b3002d",
-  authDomain: "indumentaria-nhl.firebaseapp.com",
-  projectId: "indumentaria-nhl",
-  storageBucket: "indumentaria-nhl.firebasestorage.app",
+  authDomain: "panel-turnos.firebaseapp.com",
+  projectId: "panel-turnos",
+  storageBucket: "panel-turnos.firebasestorage.app",
   messagingSenderId: "592642048600",
   appId: "1:592642048600:web:adf2ae0d3a778c97b3002d"
 };
