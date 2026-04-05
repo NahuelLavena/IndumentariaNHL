@@ -167,22 +167,22 @@ function openAddModal() {
   document.getElementById('productForm').reset();
   document.getElementById('productId').value = '';
   document.getElementById('imagePreviews').innerHTML = '';
-  document.getElementById('productModal').style.display = 'flex';
+  document.getElementById('productModal').classList.add('open');
 }
 
 function closeProductModal() {
-  document.getElementById('productModal').style.display = 'none';
+  document.getElementById('productModal').classList.remove('open');
   selectedImages = [];
   currentEditId = null;
 }
 
 function closeViewModal() {
-  document.getElementById('viewModal').style.display = 'none';
+  document.getElementById('viewModal').classList.remove('open');
   currentViewId = null;
 }
 
 function closeConfirmModal() {
-  document.getElementById('confirmModal').style.display = 'none';
+  document.getElementById('confirmModal').classList.remove('open');
 }
 
 // Image Handling
@@ -300,7 +300,7 @@ async function viewProduct(id) {
     document.getElementById('viewModalPrice').textContent = p.precio || '';
     document.getElementById('viewModalTalles').textContent = p.talles ? `Talles: ${p.talles}` : '';
     
-    document.getElementById('viewModal').style.display = 'flex';
+    document.getElementById('viewModal').classList.add('open');
   } catch (error) {
     console.error('Error viewing product:', error);
   }
@@ -369,7 +369,7 @@ let deleteId = null;
 
 function deleteProduct(id) {
   deleteId = id;
-  document.getElementById('confirmModal').style.display = 'flex';
+  document.getElementById('confirmModal').classList.add('open');
 }
 
 async function confirmDelete() {

@@ -297,7 +297,7 @@ a { color: inherit; text-decoration: none; }
 
 /* MODAL */
 .modal-backdrop {
-  display: flex;
+  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
