@@ -1,18 +1,17 @@
-const storeConfig = {
-  apiKey: "AIzaSyAdf2ae0d3a778c97b3002d",
+const firebaseConfig = {
+  apiKey: "AIzaSyDwcgsyJvKJsIjDZvBVytLOcfme1587K3U",
   authDomain: "panel-turnos.firebaseapp.com",
   projectId: "panel-turnos",
   storageBucket: "panel-turnos.firebasestorage.app",
   messagingSenderId: "592642048600",
-  appId: "1:592642048600:web:adf2ae0d3a778c97b3002d"
+  appId: "1:592642048600:web:dc1324d6e573e898b3002d"
 };
-
 let storeDb;
 let loadedProducts = [];
 
 async function initStore() {
   try {
-    firebase.initializeApp(storeConfig);
+    firebase.initializeApp(firebaseConfig);
     storeDb = firebase.firestore();
     await loadStoreProducts();
   } catch (error) {
