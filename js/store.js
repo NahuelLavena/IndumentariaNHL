@@ -59,8 +59,17 @@ function renderStoreProducts() {
     const products = loadedProducts.filter(p => p.categoria === cat);
     categoryCounts[cat] = products.length;
     
-    if (products.length > 0) {
-      grid.innerHTML = products.map(p => createProductCard(p)).join('');
+    const existingCards = grid.querySelectorAll('.card');
+    let existingHTML = '';
+    existingCards.forEach(card => {
+      if (card.classList.contains('card--disabled')) {
+        existingHTML += card.outerHTML;
+      }
+    });
+    
+    if (products.length > 0 || existingHTML) {
+      const firebaseCards = products.map(p => createProductCard(p)).join('');
+      grid.innerHTML = existingHTML + firebaseCards;
     }
   });
   
@@ -117,19 +126,29 @@ function getCategoryLabel(cat) {
 }
 
 function updateCategoryCounts(counts) {
-  const sections = {
-    'remera-oversize': document.querySelector('#remeras .section-count'),
-    'remera-clasico': document.querySelector('#remeras-clasico .section-count'),
-    'buzo': document.querySelector('#buzos .section-count'),
-    'pantalon': document.querySelector('#pantalones .section-count')
+  const categoryMap = {
+    'remera-oversize': '#remeras',
+    'remera-clasico': '#remeras-clasico',
+    'buzo': '#buzos',
+    'pantalon': '#pantalones'
   };
   
-  Object.keys(sections).forEach(cat => {
-    const countEl = sections[cat];
+  Object.keys(categoryMap).forEach(cat => {
+    const section = document.querySelector(categoryMap[cat]);
+    if (!section) return;
+    
+    const countEl = section.querySelector('.section-count');
+    const grid = section.querySelector('.grid');
+    
+    let totalCount = counts[cat] || 0;
+    if (grid) {
+      const existingCards = grid.querySelectorAll('.card:not(.card--disabled)');
+      totalCount += existingCards.length;
+    }
+    
     if (countEl) {
-      const count = counts[cat] || 0;
-      const unit = count === 1 ? 'prenda' : 'prendas';
-      countEl.textContent = `0${count} ${unit}`;
+      const unit = totalCount === 1 ? 'prenda' : 'prendas';
+      countEl.textContent = `0${totalCount} ${unit}`;
     }
   });
 }
